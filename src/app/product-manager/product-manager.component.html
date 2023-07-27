@@ -1,0 +1,44 @@
+
+<div id="section">
+  <div class="row pt-3">
+      <div class="col-6 px-5 my-5">
+        <h1>Shop Anything You Want</h1>
+        <p>Welcome to our one-stop shopping destination, 
+          where your heart's desires come to life. 
+          Discover a vast array of products and services, 
+          ranging from fashion to electronics, home essentials to rare collectibles. 
+          With a diverse selection and seamless browsing experience, 
+          you're sure to find anything and everything you want. Happy shopping
+        </p>
+        <form class="d-flex justify-content-start  mt-5 w-50">
+          <input (keyup)="search($event)" class="form-control mx-auto border border-1 rounded-2 border-primary" type="text" placeholder="Search anything">
+        </form>
+      </div>
+      <div class="col-6">
+        <img width="70%" height="450px" src="https://storage.googleapis.com/msgsndr/RKjSVFlud4tomMYa0uQc/media/64c1f345b0d35874c5637382.png" alt="">
+      </div>
+  </div>
+</div>
+
+
+  <form class="d-flex justify-content-center mx-auto my-2 w-25">
+    <input (keyup)="search($event)" class="form-control mx-auto border border-1 rounded-2 border-primary" type="text" placeholder="Search Anything">
+  </form>
+  
+  <div class="container d-flex flex-wrap gap-5">
+    <div class="row d-flex flex-column justify-content-around my-5" *ngFor="let product of products">
+      <!-- Check if the search term is empty or if it matches the title -->
+      <div class="card p-3" style="width: 18rem;" *ngIf="!searchTerm || product.title.toLowerCase().includes(searchTerm)">
+        <img width="180px" height="180px" [src]="product.thumbnail || 'https://i.dummyjson.com/data/products/1/thumbnail.jpg'" class="card-img-top border border-1 rounded-2" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${{ product.price }}</h6>
+          <p class="card-text">{{ product.description }}</p>
+          <a [routerLink]="'view/' + product.id" class="card-link btn btn-outline-primary">View</a>
+          <a href="#" class="card-link btn btn-success">Add to cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
